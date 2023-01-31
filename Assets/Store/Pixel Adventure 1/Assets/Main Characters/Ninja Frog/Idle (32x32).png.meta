@@ -138,7 +138,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle (32x32)_0
+      name: frog_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -146,7 +146,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_1
+      name: frog_idle_1
       rect:
         serializedVersion: 2
         x: 32
@@ -167,7 +167,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_2
+      name: frog_idle_3
       rect:
         serializedVersion: 2
         x: 64
@@ -188,7 +188,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_3
+      name: frog_idle_4
       rect:
         serializedVersion: 2
         x: 96
@@ -209,7 +209,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_4
+      name: frog_idle_5
       rect:
         serializedVersion: 2
         x: 128
@@ -230,7 +230,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_5
+      name: frog_idle_6
       rect:
         serializedVersion: 2
         x: 160
@@ -251,7 +251,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_6
+      name: frog_idle_7
       rect:
         serializedVersion: 2
         x: 192
@@ -272,7 +272,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_7
+      name: frog_idle_8
       rect:
         serializedVersion: 2
         x: 224
@@ -293,7 +293,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_8
+      name: frog_idle_9
       rect:
         serializedVersion: 2
         x: 256
@@ -314,7 +314,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_9
+      name: frog_idle_10
       rect:
         serializedVersion: 2
         x: 288
@@ -335,7 +335,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_10
+      name: frog_idle_11
       rect:
         serializedVersion: 2
         x: 320
@@ -356,7 +356,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -379,17 +379,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle (32x32)_7: 6456874251884481089
-      Idle (32x32)_2: 8416797952724722639
-      Idle (32x32)_1: -6056987297122131021
-      Idle (32x32)_4: 4278371960119211202
-      Idle (32x32)_9: 4392827059107796345
-      Idle (32x32)_3: 4883129791460916795
-      Idle (32x32)_8: -2526832996998184344
-      Idle (32x32)_6: -7152759390613953277
-      Idle (32x32)_10: -1363835404106015672
-      Idle (32x32)_0: -6367560908665664636
-      Idle (32x32)_5: 8644832591467991550
+      frog_idle_4: 4883129791460916795
+      frog_idle_7: -7152759390613953277
+      frog_idle_9: -2526832996998184344
+      frog_idle_11: -1363835404106015672
+      frog_idle_1: -6056987297122131021
+      frog_idle_10: 4392827059107796345
+      frog_idle_8: 6456874251884481089
+      frog_idle_0: -6367560908665664636
+      frog_idle_5: 4278371960119211202
+      frog_idle_3: 8416797952724722639
+      frog_idle_6: 8644832591467991550
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
