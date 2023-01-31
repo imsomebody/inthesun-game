@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1484305966}
   - component: {fileID: 1484305968}
   m_Layer: 0
-  m_Name: BaseTerrain
+  m_Name: TerrainMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3067,7 +3067,7 @@ GameObject:
   - component: {fileID: 1593732206}
   - component: {fileID: 1593732205}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: WorldGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
