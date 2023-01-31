@@ -9,6 +9,8 @@ public class CharacterController : MonoBehaviour
     public Int32 minHealth;
     public Int32 health;
 
+    public Healthbar bar;
+
     private Int32 remainder;
 
     public float multiplier;
@@ -18,6 +20,7 @@ public class CharacterController : MonoBehaviour
         var damageCalculation = (int)Math.Round(damage * mul);
 
         this.health = this.health - damageCalculation;
+        this.bar.SetHealth(this.health);
 
         if (health <= 0)
         {
@@ -25,8 +28,11 @@ public class CharacterController : MonoBehaviour
             this.remainder = Math.Abs(this.health);
             this.health = 0;
 
+
             Die();
         }
+
+        // request animation frames
     }
 
     private void Die()
@@ -37,12 +43,17 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.health = this.maxHealth;
+        // Sync with healthbar
+        this.bar.SetMaxHealth(this.health);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            this.TakeDamage(5);
+        }
     }
 }
