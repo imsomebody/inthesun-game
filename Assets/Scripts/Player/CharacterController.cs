@@ -1,26 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public Int32 maxHealth;
-    public Int32 minHealth;
+    [Header("Base Health Values")]
+    public Int32 maxHealth = 100;
+    public Int32 minHealth = 0;
     public Int32 health;
-
-    public Healthbar bar;
-
+    public Int32 maxStamina = 100;
+    public Int32 minStamina = 0;
+    public Int32 stamina;
     private Int32 remainder;
 
-    public float multiplier;
+    [Header("Base Movement Values")]
+    public float horizontalInput;
+    public float speedModifier = 8f;
+    public float jumpModifier = 16f;
+    private bool isFacingRight = true;
+
+    [Header("Movement Dependencies]")]
+    [SerializeField]
+    private Rigidbody2D rigidbody;
+    [SerializeField]
+    private Transform groundContact;
+    [SerializeField]
+    private LayerMask groundLayer;
+
+    [Header("Health Dependencies")]
+    public Healthbar healthBarUi;
+    public Stamina staminaBarUi;
+
+    private bool isGrounded
+    {
+        get
+        {
+            return Physics2D.OverlapCircle(this.groundContact.position, 0.2f, this.groundLayer);
+        }
+    }
+
+    public bool isSprinting
+    {
+        get
+        {
+            return Input.GetKey(KeyCode.LeftShift);
+        }
+    }
+
+    public bool HasStaminaToSprint
+    {
+        get
+        {
+            return this.stamina > (this.minStamina * 0.10);
+        }
+    }
 
     public void TakeDamage(int damage, float mul = 1)
     {
         var damageCalculation = (int)Math.Round(damage * mul);
 
         this.health = this.health - damageCalculation;
-        this.bar.SetHealth(this.health);
+        this.healthBarUi.SetHealth(this.health);
 
         if (health <= 0)
         {
@@ -43,17 +85,72 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.ResetHealth();
+        this.ResetStamina();
+    }
+
+    public void ResetHealth()
+    {
         this.health = this.maxHealth;
         // Sync with healthbar
-        this.bar.SetMaxHealth(this.health);
+        this.healthBarUi.SetMaxHealth(this.health);
+    }
+
+    public void ResetStamina()
+    {
+        this.stamina = this.maxStamina;
+        this.staminaBarUi.SetMaxStamina(this.stamina);
+    }
+
+    public void DepleteStamina(int deplete)
+    {
+        this.stamina -= deplete;
+        this.staminaBarUi.SetStamina(this.stamina);
+    }
+
+    void JumpBasic()
+    {
+        this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x, this.jumpModifier);
+    }
+
+    void JumpContinuous()
+    {
+        this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x, this.rigidbody.velocity.y * 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        this.horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        // If grounded, jump on tap
+        if (Input.GetButtonDown("Jump") && this.isGrounded)
         {
-            this.TakeDamage(5);
+            this.JumpBasic();
+        }
+
+        // If grounded, jump on hold, but more
+        if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
+        {
+            this.JumpContinuous();
+        }
+
+        Flip();
+    }
+
+    private void FixedUpdate()
+    {
+        this.rigidbody.velocity = new Vector2(this.horizontalInput * this.speedModifier, rigidbody.velocity.y);
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && this.horizontalInput < 0f || !isFacingRight && this.horizontalInput > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 }
