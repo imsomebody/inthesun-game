@@ -35,6 +35,8 @@ public class CharacterController : MonoBehaviour
     public Healthbar healthBarUi;
     public Stamina staminaBarUi;
 
+    public Animator CharacterAnimator;
+
     private bool isGrounded
     {
         get
@@ -96,7 +98,9 @@ public class CharacterController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        CharacterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
+
         this.ResetHealth();
         this.ResetStamina();
 
@@ -148,7 +152,7 @@ public class CharacterController : MonoBehaviour
             {
                 this.stamina++;
                 this.SyncStaminaWithUi();
-            } 
+            }
 
             yield return new WaitForSeconds(this.secondsBeforeStaminaRegen);
         }
@@ -160,16 +164,16 @@ public class CharacterController : MonoBehaviour
         this.horizontalInput = Input.GetAxisRaw("Horizontal");
 
         // If grounded, jump on tap
-        if (Input.GetButtonDown("Jump") && this.isGrounded)
+        if (Input.GetButtonDown("Jump") && this.isGrounded)  
         {
             this.JumpBasic();
         }
 
-        // If grounded, jump on hold, but more
-        if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
-        {
-            this.JumpContinuous();
-        }
+        // // If grounded, jump on hold, but more
+        // if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
+        // {
+        //     this.JumpContinuous();
+        // }
 
         Flip();
     }
@@ -183,6 +187,10 @@ public class CharacterController : MonoBehaviour
             speed *= 1f;
             this.DepleteStamina(1);
         }
+
+
+        if (speed != 0.0) CharacterAnimator.SetBool("IsWalking", true);
+        else CharacterAnimator.SetBool("IsWalking", false);
 
         this.rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
     }
