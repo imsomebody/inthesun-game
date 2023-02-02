@@ -10,15 +10,17 @@ public class CharacterController : MonoBehaviour
     public Int32 maxHealth = 100;
     public Int32 minHealth = 0;
     public Int32 health;
-    public Int32 maxStamina = 100;
-    public Int32 minStamina = 0;
-    public Int32 stamina;
     private Int32 remainder;
 
     [Header("Base Movement Values")]
     public float horizontalInput;
     public float speedModifier = 8f;
     public float jumpModifier = 16f;
+    public Int32 maxStamina = 100;
+    public Int32 minStamina = 0;
+    public Int32 stamina;
+    public bool shouldRegenerateStamina = true;
+    public int secondsBeforeStaminaRegen = 1;
     private bool isFacingRight = true;
 
     [Header("Movement Dependencies]")]
@@ -57,12 +59,22 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    void SyncHealthWithUi()
+    {
+        this.healthBarUi.SetHealth(this.health);
+    }
+
+    void SyncStaminaWithUi()
+    {
+        this.staminaBarUi.SetStamina(this.stamina);
+    }
+
     public void TakeDamage(int damage, float mul = 1)
     {
         var damageCalculation = (int)Math.Round(damage * mul);
 
         this.health = this.health - damageCalculation;
-        this.healthBarUi.SetHealth(this.health);
+        this.SyncHealthWithUi();
 
         if (health <= 0)
         {
@@ -87,19 +99,29 @@ public class CharacterController : MonoBehaviour
     {
         this.ResetHealth();
         this.ResetStamina();
+
+        if (this.shouldRegenerateStamina)
+        {
+            StartCoroutine(PassiveStaminaRegen());
+        }
+    }
+
+    public void StopPassiveStaminaRegen()
+    {
+        StopCoroutine(PassiveStaminaRegen());
     }
 
     public void ResetHealth()
     {
         this.health = this.maxHealth;
         // Sync with healthbar
-        this.healthBarUi.SetMaxHealth(this.health);
+        this.SyncHealthWithUi();
     }
 
     public void ResetStamina()
     {
         this.stamina = this.maxStamina;
-        this.staminaBarUi.SetMaxStamina(this.stamina);
+        this.SyncStaminaWithUi();
     }
 
     public void DepleteStamina(int deplete)
@@ -116,6 +138,20 @@ public class CharacterController : MonoBehaviour
     void JumpContinuous()
     {
         this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x, this.rigidbody.velocity.y * 0.5f);
+    }
+
+    IEnumerator PassiveStaminaRegen()
+    {
+        while (true)
+        {
+            if (this.stamina < this.maxStamina)
+            {
+                this.stamina++;
+                this.SyncStaminaWithUi();
+            } 
+
+            yield return new WaitForSeconds(this.secondsBeforeStaminaRegen);
+        }
     }
 
     // Update is called once per frame
@@ -140,7 +176,15 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.rigidbody.velocity = new Vector2(this.horizontalInput * this.speedModifier, rigidbody.velocity.y);
+        var speed = this.horizontalInput * this.speedModifier;
+
+        if (this.isSprinting && this.HasStaminaToSprint)
+        {
+            speed *= 1f;
+            this.DepleteStamina(1);
+        }
+
+        this.rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
     }
 
     private void Flip()
