@@ -163,17 +163,18 @@ public class CharacterController : MonoBehaviour
     {
         this.horizontalInput = Input.GetAxisRaw("Horizontal");
 
+
         // If grounded, jump on tap
         if (Input.GetButtonDown("Jump") && this.isGrounded)  
         {
             this.JumpBasic();
         }
 
-        // // If grounded, jump on hold, but more
-        // if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
-        // {
-        //     this.JumpContinuous();
-        // }
+        // If grounded, jump on hold, but more
+        if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
+        {
+            this.JumpContinuous();
+        }
 
         Flip();
     }

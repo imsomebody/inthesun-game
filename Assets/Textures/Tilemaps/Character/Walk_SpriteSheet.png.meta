@@ -112,8 +112,8 @@ TextureImporter:
         y: 0
         width: 32
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,12 +129,12 @@ TextureImporter:
       name: Walk_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
-        width: 32
+        width: 26
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: Walk_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 69
         y: 0
-        width: 32
+        width: 21
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: Walk_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 100
         y: 0
-        width: 32
+        width: 24
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,8 +196,8 @@ TextureImporter:
         y: 0
         width: 32
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: Walk_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 162
         y: 0
-        width: 32
+        width: 26
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Walk_SpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 197
         y: 0
-        width: 32
+        width: 21
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Walk_SpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 224
+        x: 228
         y: 0
-        width: 32
+        width: 24
         height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47619048}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
