@@ -39,13 +39,14 @@ public class CharacterController : MonoBehaviour
 
     private Animator characterAnimator;
     private RespawnHandler respawnHandler;
-    private bool isGrounded;
+
+    private DateTime lastMovement;
 
     private bool RaycastHitGround
     {
         get
         {
-            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.4f, this.groundLayer);
+            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + .4f, this.groundLayer);
         }
     }
 
@@ -106,13 +107,23 @@ public class CharacterController : MonoBehaviour
 
     public void BeAfk()
     {
-        this.characterAnimator.SetBool("IsWalking", false);
-        this.characterAnimator.SetBool("IsAFK", true);
+        if (!this.characterAnimator.GetBool("IsAFK"))
+        {
+            this.characterAnimator.SetBool("IsAFK", true);
+        }
+    }
+
+    public void StopAfk()
+    {
+        if (this.characterAnimator.GetBool("IsAFK"))
+        {
+            this.characterAnimator.SetBool("IsAFK", false);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         this.characterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
         this.respawnHandler = GameObject.FindWithTag("Respawn").GetComponent<RespawnHandler>();
         this.runAudio = GetComponent<AudioSource>();
@@ -139,6 +150,12 @@ public class CharacterController : MonoBehaviour
         this.health = this.maxHealth;
         // Sync with healthbar
         this.SyncHealthWithUi();
+        this.SyncHealthWithAnimator();
+    }
+
+    void SyncHealthWithAnimator()
+    {
+        this.characterAnimator.SetInteger("HealthPoints", this.health);
     }
 
     public void ResetStamina()
@@ -179,15 +196,25 @@ public class CharacterController : MonoBehaviour
 
     IEnumerator HandleAfkSpriteChange()
     {
-        while(true)
+        while (true)
         {
             var isAfk = this.characterAnimator.GetBool("IsAFK");
+
+            if (lastMovement != null)
+            {
+                var difference = lastMovement - DateTime.Now;
+
+                if (difference.Seconds < 5)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
 
             if (currentSpeed == 0f && this.rigidbody.velocity.y == 0f && !isAfk)
             {
                 isAfk = !isAfk;
 
-                if(this.characterAnimator.GetBool("IsWalking"))
+                if (this.characterAnimator.GetBool("IsWalking"))
                 {
                     this.characterAnimator.SetBool("IsWalking", false);
                 }
@@ -195,7 +222,39 @@ public class CharacterController : MonoBehaviour
                 this.characterAnimator.SetBool("IsAFK", isAfk);
             }
 
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+    void StartJumping()
+    {
+        if (!this.characterAnimator.GetBool("IsJumping"))
+        {
+            this.StopFalling();
+            this.characterAnimator.SetBool("IsWalking", false);
+            this.characterAnimator.SetBool("IsJumping", true);
+        }
+    }
+
+    void StopJumping()
+    {
+        if (this.characterAnimator.GetBool("IsJumping"))
+        {
+            this.characterAnimator.SetBool("IsJumping", false);
+        }
+    }
+
+    void StartFalling()
+    {
+        this.StopJumping();
+        this.characterAnimator.SetBool("IsFalling", true);
+    }
+
+    void StopFalling()
+    {
+        if (this.characterAnimator.GetBool("IsFalling"))
+        {
+            this.characterAnimator.SetBool("IsFalling", false);
         }
     }
 
@@ -206,26 +265,35 @@ public class CharacterController : MonoBehaviour
 
 
         // If grounded, jump on tap
-        if (Input.GetButtonDown("Jump") && this.RaycastHitGround)  
+        if (Input.GetButtonDown("Jump") && this.RaycastHitGround)
         {
+            StartJumping();
             this.JumpBasic();
+            this.lastMovement = DateTime.Now;
         }
 
         // If grounded, jump on hold, but more
         if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
         {
+            StartJumping();
             this.JumpContinuous();
+            this.lastMovement = DateTime.Now;
         }
 
-        if(!this.isGrounded && this.rigidbody.velocity.y == 0f)
+        if (this.rigidbody.velocity.y < 0)
         {
-            this.isGrounded = false;
-        } else if(this.rigidbody.velocity.y > 0f)
-        {
-            this.isGrounded = true;
+            this.StartFalling();
         }
 
         Flip();
+    }
+
+    void StartWalking()
+    {
+        if (this.characterAnimator.GetBool("IsWalking"))
+        {
+            this.characterAnimator.SetBool("IsWalking", true);
+        }
     }
 
     private void FixedUpdate()
@@ -239,30 +307,44 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        if (speed != 0.0)
+        if (speed > 0f || speed < 0f)
         {
-            if(this.characterAnimator.GetBool("IsAFK"))
+            this.lastMovement = DateTime.Now;
+
+            if (this.characterAnimator.GetBool("IsAFK"))
             {
                 this.characterAnimator.SetBool("IsAFK", false);
             }
 
-            if(this.RaycastHitGround)
+            if (!this.characterAnimator.GetBool("IsJumping") && !this.characterAnimator.GetBool("IsFalling"))
             {
-                this.characterAnimator.SetBool("IsWalking", true);
-
-                if(!this.runAudio.isPlaying)
-                {
-                    this.runAudio.Play();
-                }
-            } else
-            {
-                // TODO: animação freefall
-                this.runAudio.Stop();
+                this.StartWalking();
             }
         }
         else
         {
             this.characterAnimator.SetBool("IsWalking", false);
+            this.runAudio.Stop();
+        }
+
+        if (this.RaycastHitGround)
+        {
+            this.StopJumping();
+            this.StopFalling();
+
+            if (!this.runAudio.isPlaying)
+            {
+                this.runAudio.Play();
+            }
+        }
+        
+        if(this.RaycastHitGround && speed != 0.0)
+        {
+            this.runAudio.Play();
+        }
+        else
+        {
+            // TODO: animação freefall
             this.runAudio.Stop();
         }
 
