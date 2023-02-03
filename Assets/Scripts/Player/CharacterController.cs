@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
     public Int32 minStamina = 0;
     public Int32 stamina;
     public bool shouldRegenerateStamina = true;
-    public int secondsBeforeStaminaRegen = 1;
+    public float secondsBeforeStaminaRegen = 0.7f;
     private bool isFacingRight = true;
     public AudioSource runAudio;
 
@@ -45,7 +45,7 @@ public class CharacterController : MonoBehaviour
     {
         get
         {
-            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.3f);
+            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.4f, this.groundLayer);
         }
     }
 
@@ -167,9 +167,9 @@ public class CharacterController : MonoBehaviour
     {
         while (true)
         {
-            if (this.stamina < this.maxStamina)
+            if (this.stamina < this.maxStamina && !this.isSprinting)
             {
-                this.stamina++;
+                this.stamina += 15;
                 this.SyncStaminaWithUi();
             }
 

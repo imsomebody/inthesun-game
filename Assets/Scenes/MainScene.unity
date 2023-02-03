@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 251584580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DeveloperPrefabs
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -7473,6 +7473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 1293670278455274058, guid: 5107609efbabfb84991a0032bf610806, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5107609efbabfb84991a0032bf610806, type: 3}
 --- !u!1001 &7196152796264290657
@@ -7668,6 +7672,14 @@ PrefabInstance:
     - target: {fileID: 7779010765529210036, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779010765529210036, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779010765806958380, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
