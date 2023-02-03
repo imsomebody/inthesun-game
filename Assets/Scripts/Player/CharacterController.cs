@@ -23,6 +23,7 @@ public class CharacterController : MonoBehaviour
     public bool shouldRegenerateStamina = true;
     public int secondsBeforeStaminaRegen = 1;
     private bool isFacingRight = true;
+    public AudioSource runAudio;
 
     [Header("Movement Dependencies]")]
     [SerializeField]
@@ -44,7 +45,7 @@ public class CharacterController : MonoBehaviour
     {
         get
         {
-            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CompositeCollider2D>().bounds.extents.y + 0.3f);
+            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.3f);
         }
     }
 
@@ -114,6 +115,7 @@ public class CharacterController : MonoBehaviour
     {   
         this.characterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
         this.respawnHandler = GameObject.FindWithTag("Respawn").GetComponent<RespawnHandler>();
+        this.runAudio = GetComponent<AudioSource>();
 
         this.ResetHealth();
         this.ResetStamina();
@@ -193,7 +195,7 @@ public class CharacterController : MonoBehaviour
                 this.characterAnimator.SetBool("IsAFK", isAfk);
             }
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6f);
         }
     }
 
@@ -244,11 +246,24 @@ public class CharacterController : MonoBehaviour
                 this.characterAnimator.SetBool("IsAFK", false);
             }
 
-            this.characterAnimator.SetBool("IsWalking", true);
+            if(this.RaycastHitGround)
+            {
+                this.characterAnimator.SetBool("IsWalking", true);
+
+                if(!this.runAudio.isPlaying)
+                {
+                    this.runAudio.Play();
+                }
+            } else
+            {
+                // TODO: animação freefall
+                this.runAudio.Stop();
+            }
         }
         else
         {
             this.characterAnimator.SetBool("IsWalking", false);
+            this.runAudio.Stop();
         }
 
         this.currentSpeed = speed;
