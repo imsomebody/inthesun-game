@@ -39,12 +39,22 @@ public class EnemyController : MonoBehaviour
     bool isGrounded = false;
     public Seeker seeker;
     Rigidbody2D rb;
+    CharacterController player;
 
     public bool TargetInDistance 
     {  
         get
         {
             return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+        }
+    }
+
+    public bool CanDamagePlayer
+    {
+        get
+        {
+            var intersect = Physics2D.OverlapCircle(this.transform.position, 1.5f, LayerMask.NameToLayer("Player"));
+            return intersect;
         }
     }
 
@@ -80,6 +90,7 @@ public class EnemyController : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateInterval);
     }
@@ -89,6 +100,11 @@ public class EnemyController : MonoBehaviour
         if (this.TargetInDistance && this.willMove)
         {
             PathFollow();
+        }
+
+        if(CanDamagePlayer)
+        {
+            player.TakeDamage(2);
         }
     }
 

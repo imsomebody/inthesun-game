@@ -46,7 +46,7 @@ public class CharacterController : MonoBehaviour
     {
         get
         {
-            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + .4f, this.groundLayer);
+            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.4f, this.groundLayer);
         }
     }
 
@@ -202,7 +202,7 @@ public class CharacterController : MonoBehaviour
 
             if (lastMovement != null)
             {
-                var difference = lastMovement - DateTime.Now;
+                var difference = DateTime.Now - lastMovement;
 
                 if (difference.Seconds < 5)
                 {
@@ -231,7 +231,6 @@ public class CharacterController : MonoBehaviour
         if (!this.characterAnimator.GetBool("IsJumping"))
         {
             this.StopFalling();
-            this.characterAnimator.SetBool("IsWalking", false);
             this.characterAnimator.SetBool("IsJumping", true);
         }
     }
@@ -307,7 +306,7 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        if (speed > 0f || speed < 0f)
+        if (speed != 0.0)
         {
             this.lastMovement = DateTime.Now;
 
@@ -316,7 +315,7 @@ public class CharacterController : MonoBehaviour
                 this.characterAnimator.SetBool("IsAFK", false);
             }
 
-            if (!this.characterAnimator.GetBool("IsJumping") && !this.characterAnimator.GetBool("IsFalling"))
+            if (this.RaycastHitGround && this.rigidbody.velocity.y < 0.3f)
             {
                 this.StartWalking();
             }
@@ -327,7 +326,7 @@ public class CharacterController : MonoBehaviour
             this.runAudio.Stop();
         }
 
-        if (this.RaycastHitGround)
+        if (this.RaycastHitGround && speed > 0)
         {
             this.StopJumping();
             this.StopFalling();
@@ -336,11 +335,6 @@ public class CharacterController : MonoBehaviour
             {
                 this.runAudio.Play();
             }
-        }
-        
-        if(this.RaycastHitGround && speed != 0.0)
-        {
-            this.runAudio.Play();
         }
         else
         {
