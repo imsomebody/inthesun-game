@@ -35,15 +35,18 @@ public class CharacterController : MonoBehaviour
     public Healthbar healthBarUi;
     public Stamina staminaBarUi;
 
-    public Animator characterAnimator;
+    [Header("Particles")]
+    public ParticleSystem dustFallParticles;
 
+    private Animator characterAnimator;
     private RespawnHandler respawnHandler;
+    private bool isGrounded;
 
-    private bool isGrounded
+    private bool RaycastHitGround
     {
         get
         {
-            return Physics2D.OverlapCircle(this.groundContact.position, 0.2f, this.groundLayer);
+            return Physics2D.Raycast(this.transform.position, -Vector3.up, GetComponent<CompositeCollider2D>().bounds.extents.y + 0.3f);
         }
     }
 
@@ -115,6 +118,8 @@ public class CharacterController : MonoBehaviour
         {
             StartCoroutine(PassiveStaminaRegen());
         }
+
+        this.dustFallParticles = GameObject.FindGameObjectWithTag("PlayerDust").GetComponent<ParticleSystem>();
     }
 
     public void StopPassiveStaminaRegen()
@@ -172,7 +177,7 @@ public class CharacterController : MonoBehaviour
 
 
         // If grounded, jump on tap
-        if (Input.GetButtonDown("Jump") && this.isGrounded)  
+        if (Input.GetButtonDown("Jump") && this.RaycastHitGround)  
         {
             this.JumpBasic();
         }
@@ -181,6 +186,16 @@ public class CharacterController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && this.rigidbody.velocity.y > 0f)
         {
             this.JumpContinuous();
+        }
+
+        if(!this.isGrounded && this.rigidbody.velocity.y == 0f)
+        {
+            this.dustFallParticles.Play();
+
+            this.isGrounded = false;
+        } else if(this.rigidbody.velocity.y > 0f)
+        {
+            this.isGrounded = true;
         }
 
         Flip();

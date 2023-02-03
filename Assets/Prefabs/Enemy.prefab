@@ -54,19 +54,19 @@ MonoBehaviour:
   target: {fileID: 0}
   activateDistance: 50
   pathUpdateInterval: 0.5
-  speed: 200
+  speed: 180
   nextWaypointDistance: 3
-  jumpNodeHeightMinimum: 0.7
-  jumpModifier: 0.09
+  jumpNodeHeightMinimum: 0.91
+  jumpModifier: 0.89
   jumpCheckOffset: 0.008
   willMove: 1
   willJump: 1
   willFlip: 1
   playerLayer:
     serializedVersion: 2
-    m_Bits: 8
-  currentWaypoint: 0
-  seeker: {fileID: 0}
+    m_Bits: 3
+  currentWaypoint: 2
+  seeker: {fileID: 7779010765529210018}
 --- !u!50 &7779010765529210019
 Rigidbody2D:
   serializedVersion: 4
