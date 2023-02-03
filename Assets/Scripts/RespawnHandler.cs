@@ -13,7 +13,7 @@ public class RespawnHandler : MonoBehaviour
         this.Respawn();
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         this.player.transform.position = this.transform.position;
         this.player.GetComponent<CharacterController>().ResetHealth();

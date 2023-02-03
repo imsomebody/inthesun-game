@@ -35,7 +35,9 @@ public class CharacterController : MonoBehaviour
     public Healthbar healthBarUi;
     public Stamina staminaBarUi;
 
-    public Animator CharacterAnimator;
+    public Animator characterAnimator;
+
+    private RespawnHandler respawnHandler;
 
     private bool isGrounded
     {
@@ -93,13 +95,18 @@ public class CharacterController : MonoBehaviour
 
     private void Die()
     {
-        throw new NotImplementedException("Cant die.");
+        // requisitar animação ao animator aqui
+        // ui ao morrer
+
+        this.respawnHandler.Respawn();
+        this.ResetHealth();
     }
 
     // Start is called before the first frame update
     void Start()
     {   
-        CharacterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
+        this.characterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
+        this.respawnHandler = GameObject.FindWithTag("Respawn").GetComponent<RespawnHandler>();
 
         this.ResetHealth();
         this.ResetStamina();
@@ -190,8 +197,8 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        if (speed != 0.0) CharacterAnimator.SetBool("IsWalking", true);
-        else CharacterAnimator.SetBool("IsWalking", false);
+        if (speed != 0.0) characterAnimator.SetBool("IsWalking", true);
+        else characterAnimator.SetBool("IsWalking", false);
 
         this.rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
     }
