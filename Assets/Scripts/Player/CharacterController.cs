@@ -90,13 +90,13 @@ public class CharacterController : MonoBehaviour
             Die();
         }
 
-        // request animation frames
+        // todo: request animation frames
     }
 
     private void Die()
     {
-        // requisitar animação ao animator aqui
-        // ui ao morrer
+        // todo: requisitar animação ao animator aqui
+        // todo: ui ao morrer
 
         this.respawnHandler.Respawn();
         this.ResetHealth();

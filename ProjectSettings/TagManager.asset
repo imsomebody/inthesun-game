@@ -5,17 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerVFX
+  - Node
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - Details
+  - Background
+  - Enemy
   - 
   - 
   - 
