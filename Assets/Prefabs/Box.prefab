@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1293670278455274053}
   - component: {fileID: 1293670278455274052}
   - component: {fileID: 1293670278455274059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293670278455274058}
-  m_LocalRotation: {x: -0, y: -0, z: -0.41529736, w: 0.9096857}
+  m_LocalRotation: {x: 0, y: 0, z: -0.41529664, w: 0.9096861}
   m_LocalPosition: {x: 14.19, y: 5.38, z: -0.11519723}
   m_LocalScale: {x: 5.6757, y: 5.6757, z: 5.6757}
   m_ConstrainProportionsScale: 0
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

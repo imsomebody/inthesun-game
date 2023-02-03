@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7779010765529210019}
   - component: {fileID: 7779010765529210018}
   - component: {fileID: 7779010765529210017}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,9 +59,9 @@ MonoBehaviour:
   jumpNodeHeightMinimum: 0.91
   jumpModifier: 0.89
   jumpCheckOffset: 0.008
-  willMove: 1
-  willJump: 1
-  willFlip: 1
+  willMove: 0
+  willJump: 0
+  willFlip: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 3
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7779010765806958369}
   - component: {fileID: 7779010765806958370}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BoxEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
