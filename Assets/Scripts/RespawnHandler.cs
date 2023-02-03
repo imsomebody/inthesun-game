@@ -17,6 +17,7 @@ public class RespawnHandler : MonoBehaviour
     {
         this.player.transform.position = this.transform.position;
         this.player.GetComponent<CharacterController>().ResetHealth();
+        this.player.GetComponent<CharacterController>().BeAfk();
     }
 
     // Update is called once per frame

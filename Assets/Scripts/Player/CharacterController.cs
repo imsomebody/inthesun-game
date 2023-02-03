@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     private Int32 remainder;
 
     [Header("Base Movement Values")]
+    public float currentSpeed = 0;
     public float horizontalInput;
     public float speedModifier = 8f;
     public float jumpModifier = 16f;
@@ -34,9 +35,6 @@ public class CharacterController : MonoBehaviour
     [Header("Health Dependencies")]
     public Healthbar healthBarUi;
     public Stamina staminaBarUi;
-
-    [Header("Particles")]
-    public ParticleSystem dustFallParticles;
 
     private Animator characterAnimator;
     private RespawnHandler respawnHandler;
@@ -105,6 +103,12 @@ public class CharacterController : MonoBehaviour
         this.ResetHealth();
     }
 
+    public void BeAfk()
+    {
+        this.characterAnimator.SetBool("IsWalking", false);
+        this.characterAnimator.SetBool("IsAFK", true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -119,7 +123,8 @@ public class CharacterController : MonoBehaviour
             StartCoroutine(PassiveStaminaRegen());
         }
 
-        this.dustFallParticles = GameObject.FindGameObjectWithTag("PlayerDust").GetComponent<ParticleSystem>();
+        StartCoroutine("HandleAfkSpriteChange");
+        this.BeAfk();
     }
 
     public void StopPassiveStaminaRegen()
@@ -170,6 +175,28 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    IEnumerator HandleAfkSpriteChange()
+    {
+        while(true)
+        {
+            var isAfk = this.characterAnimator.GetBool("IsAFK");
+
+            if (currentSpeed == 0f && this.rigidbody.velocity.y == 0f && !isAfk)
+            {
+                isAfk = !isAfk;
+
+                if(this.characterAnimator.GetBool("IsWalking"))
+                {
+                    this.characterAnimator.SetBool("IsWalking", false);
+                }
+
+                this.characterAnimator.SetBool("IsAFK", isAfk);
+            }
+
+            yield return new WaitForSeconds(4);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -190,8 +217,6 @@ public class CharacterController : MonoBehaviour
 
         if(!this.isGrounded && this.rigidbody.velocity.y == 0f)
         {
-            this.dustFallParticles.Play();
-
             this.isGrounded = false;
         } else if(this.rigidbody.velocity.y > 0f)
         {
@@ -212,9 +237,21 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        if (speed != 0.0) characterAnimator.SetBool("IsWalking", true);
-        else characterAnimator.SetBool("IsWalking", false);
+        if (speed != 0.0)
+        {
+            if(this.characterAnimator.GetBool("IsAFK"))
+            {
+                this.characterAnimator.SetBool("IsAFK", false);
+            }
 
+            this.characterAnimator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            this.characterAnimator.SetBool("IsWalking", false);
+        }
+
+        this.currentSpeed = speed;
         this.rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
     }
 
