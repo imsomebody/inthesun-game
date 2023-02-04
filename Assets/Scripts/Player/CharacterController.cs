@@ -1,3 +1,5 @@
+using Cinemachine;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +8,9 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    private CinemachineVirtualCamera virtualCamera;
+    private float shakeTimer;
+
     [Header("Base Health Values")]
     public Int32 maxHealth = 100;
     public Int32 minHealth = 0;
@@ -87,6 +92,7 @@ public class CharacterController : MonoBehaviour
 
         this.health = this.health - damageCalculation;
         this.SyncHealthWithUi();
+        this.ShakeCamera();
 
         if (health <= 0)
         {
@@ -161,12 +167,21 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void ShakeCamera(float intensity = 4.81f, float time = 0.5f)
+    {
+        var perlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        perlin.m_AmplitudeGain = intensity;
+        shakeTimer = time;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         this.characterAnimator = GameObject.FindWithTag("PlayerVFX").GetComponent<Animator>();
         this.respawnHandler = GameObject.FindWithTag("Respawn").GetComponent<RespawnHandler>();
         this.runAudio = GetComponent<AudioSource>();
+        this.virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
 
         this.ResetHealth();
         this.ResetStamina();
@@ -302,6 +317,12 @@ public class CharacterController : MonoBehaviour
     {
         this.horizontalInput = Input.GetAxisRaw("Horizontal");
 
+        shakeTimer -= Time.deltaTime;
+        if (shakeTimer <= 0)
+        {
+            var perlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            perlin.m_AmplitudeGain = 0f;
+        }
 
         // If grounded, jump on tap
         if (Input.GetButtonDown("Jump") && this.RaycastHitGround)
@@ -347,7 +368,7 @@ public class CharacterController : MonoBehaviour
         var speed = this.horizontalInput * this.speedModifier;
 
         // no input while dashing
-        if(rollLock)
+        if (rollLock)
         {
             return;
         }
