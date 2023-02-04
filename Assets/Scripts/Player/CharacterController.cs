@@ -385,7 +385,7 @@ public class CharacterController : MonoBehaviour
 
     void Attack()
     {
-        if (this.attackLock || this.characterAnimator.GetBool("IsAFK")) return;
+        if (this.attackLock || this.characterAnimator.GetBool("IsAFK") || !this.RaycastHitGround) return;
 
         this.characterAnimator.SetTrigger("IsAttacking");
         this.swordAudio.Play();
