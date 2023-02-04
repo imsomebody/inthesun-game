@@ -86,9 +86,29 @@ public class CharacterController : MonoBehaviour
         this.staminaBarUi.SetStamina(this.stamina);
     }
 
-    public void TakeDamage(int damage, float mul = 1)
+    public void Heal(int num)
+    {
+        if(health + num > 100)
+        {
+            health = 100;
+        } else
+        {
+            health += num;
+        }
+
+        SyncHealthWithUi();
+    }
+
+    public void TakeDamage(int damage, EnemyController enemy, float mul = 1)
     {
         if (isInvulnerable) return;
+        if (rollLock)
+        {
+            enemy.TakeDamage(30, 1, this.isFacingRight);
+            this.ShakeCamera(3f, .4f);
+            return;
+        }
+
         isInvulnerable = true;
         var damageCalculation = (int)Math.Round(damage * mul);
 
