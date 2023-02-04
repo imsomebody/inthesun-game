@@ -34,7 +34,11 @@ public class CharacterController : MonoBehaviour
     public float secondsBeforeStaminaRegen = 0.7f;
     private bool isFacingRight = true;
     private bool isInvulnerable = false;
+
     public AudioSource runAudio;
+    public AudioSource healAudio;
+    public AudioSource swordAudio;
+    public AudioSource impactAudio;
 
     [Header("Movement Dependencies]")]
     [SerializeField]
@@ -92,9 +96,11 @@ public class CharacterController : MonoBehaviour
         if(health + num > 100)
         {
             health = 100;
+            this.healAudio.Play();
         } else
         {
             health += num;
+            this.healAudio.Play();
         }
 
         SyncHealthWithUi();
@@ -106,6 +112,12 @@ public class CharacterController : MonoBehaviour
         if (rollLock)
         {
             enemy.TakeDamage(30, 1, this.isFacingRight);
+            enemy.rb.AddForce(new Vector2(this.rigidbody.velocity.x > 0 ? 3f : -3f, 0f));
+
+            if (!impactAudio.isPlaying)
+            {
+                impactAudio.Play();
+            }
             this.ShakeCamera(3f, .4f);
             return;
         }
@@ -346,10 +358,12 @@ public class CharacterController : MonoBehaviour
         if (this.attackLock) return;
 
         this.characterAnimator.SetTrigger("IsAttacking");
+        this.swordAudio.Play();
         var layer = LayerMask.NameToLayer("Ground");
         var scale = this.rigidbody.position;
 
         var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, 1.2f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
+        this.attackLock = true;
 
         if (intersect)
         {
@@ -357,17 +371,17 @@ public class CharacterController : MonoBehaviour
 
             if (enemyHandler)
             {
-                this.attackLock = true;
                 enemyHandler.TakeDamage(40, 1, isFacingRight);
                 ShakeCamera(2.5f, .3f);
-                StartCoroutine(ClearAttackLock());
             }
         }
+
+        StartCoroutine(ClearAttackLock());
     }
 
     IEnumerator ClearAttackLock()
     {
-        yield return new WaitForSeconds(.65f);
+        yield return new WaitForSeconds(.4f);
         this.attackLock = false;
     }
 

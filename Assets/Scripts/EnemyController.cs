@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     public int currentWaypoint = 0;
     bool isGrounded = false;
     public Seeker seeker;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     CharacterController player;
 
     public bool TargetInDistance 
