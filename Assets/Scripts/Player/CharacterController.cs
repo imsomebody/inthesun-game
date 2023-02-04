@@ -401,12 +401,18 @@ public class CharacterController : MonoBehaviour
 
             if (enemyHandler)
             {
-                enemyHandler.TakeDamage(40, 1, isFacingRight);
-                ShakeCamera(2.5f, .3f);
+                StartCoroutine(DoAttackDamage(enemyHandler));
             }
         }
 
         StartCoroutine(ClearAttackLock());
+    }
+
+    IEnumerator DoAttackDamage(EnemyController enemy)
+    {
+        yield return new WaitForSeconds(.14f);
+        enemy.TakeDamage(40, 1, isFacingRight);
+        ShakeCamera(2.5f, .3f);
     }
 
     IEnumerator ClearAttackLock()
