@@ -15,6 +15,11 @@ public class CharacterController : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private float shakeTimer;
     private bool attackLock = false;
+    [SerializeField]
+    private float attackRange = 1.2f;
+    [SerializeField]
+    private float attackRate = .5f;
+    private float nextAttackTime = 0f;
     private bool isAlive = true;
 
     [Header("Base Health Values")]
@@ -61,6 +66,14 @@ public class CharacterController : MonoBehaviour
 
     private DateTime lastMovement;
 
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(this.rigidbody.position, attackRange);
+    }
+
+
     private bool RaycastHitGround
     {
         get
@@ -97,11 +110,12 @@ public class CharacterController : MonoBehaviour
 
     public void Heal(int num)
     {
-        if(health + num > 100)
+        if (health + num > 100)
         {
             health = 100;
             this.healAudio.Play();
-        } else
+        }
+        else
         {
             health += num;
             this.healAudio.Play();
@@ -266,7 +280,7 @@ public class CharacterController : MonoBehaviour
 
     void SyncHealthWithAnimator()
     {
-        this.characterAnimator.SetFloat("HealthPoints",  this.health);
+        this.characterAnimator.SetFloat("HealthPoints", this.health);
     }
 
     public void ResetStamina()
@@ -378,7 +392,7 @@ public class CharacterController : MonoBehaviour
         var layer = LayerMask.NameToLayer("Ground");
         var scale = this.rigidbody.position;
 
-        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, 1.2f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
+        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, attackRange).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
         this.attackLock = true;
 
         if (intersect)
@@ -431,13 +445,16 @@ public class CharacterController : MonoBehaviour
             this.lastMovement = DateTime.Now;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextAttackTime)
         {
             if (!this.attackLock)
             {
                 this.Attack();
+                nextAttackTime = Time.time + attackRate;
             }
         }
+
 
         if (this.rigidbody.velocity.y < -1f)
         {

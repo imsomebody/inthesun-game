@@ -125,7 +125,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(this.transform.position, .8f);
+        Gizmos.DrawWireSphere(this.transform.position, .5f);
     }
 
     void UpdatePath()
