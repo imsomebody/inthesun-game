@@ -86,6 +86,19 @@ public class CharacterController : MonoBehaviour
         this.staminaBarUi.SetStamina(this.stamina);
     }
 
+    public void Heal(int num)
+    {
+        if(health + num > 100)
+        {
+            health = 100;
+        } else
+        {
+            health += num;
+        }
+
+        SyncHealthWithUi();
+    }
+
     public void TakeDamage(int damage, float mul = 1)
     {
         if (isInvulnerable) return;
