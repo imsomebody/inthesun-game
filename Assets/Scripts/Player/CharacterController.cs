@@ -10,6 +10,8 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using static UnityEngine.EventSystems.EventTrigger;
+
 public class CharacterController : MonoBehaviour
 {
     private CinemachineVirtualCamera virtualCamera;
@@ -385,14 +387,14 @@ public class CharacterController : MonoBehaviour
 
     void Attack()
     {
-        if (this.attackLock || this.characterAnimator.GetBool("IsAFK") || !this.RaycastHitGround) return;
+        if (this.attackLock || this.characterAnimator.GetBool("IsAFK")) return;
 
         this.characterAnimator.SetTrigger("IsAttacking");
         this.swordAudio.Play();
         var layer = LayerMask.NameToLayer("Ground");
         var scale = this.rigidbody.position;
 
-        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, attackRange).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
+        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, attackRange).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy") || collider.gameObject.name.Contains("Enemy"));
         this.attackLock = true;
 
         if (intersect)
@@ -401,17 +403,18 @@ public class CharacterController : MonoBehaviour
 
             if (enemyHandler)
             {
-                StartCoroutine(DoAttackDamage(enemyHandler));
+                enemyHandler.TakeDamage(50, 1, isFacingRight);
+                StartCoroutine(DoAttackShake(enemyHandler));
             }
         }
 
         StartCoroutine(ClearAttackLock());
     }
 
-    IEnumerator DoAttackDamage(EnemyController enemy)
+    IEnumerator DoAttackShake(EnemyController enemy)
     {
         yield return new WaitForSeconds(.14f);
-        enemy.TakeDamage(40, 1, isFacingRight);
+
         ShakeCamera(2.5f, .3f);
     }
 

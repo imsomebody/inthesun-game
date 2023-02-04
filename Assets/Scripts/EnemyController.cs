@@ -90,7 +90,9 @@ public class EnemyController : MonoBehaviour
 
         this.health -= damageCalc;
 
-        if(this.health < this.minHealth)
+        this.rb.velocity = (new Vector2(positive ? 3f : -3f, 4f));
+
+        if(this.health <= this.minHealth)
         {
             this.Die();
             return;
@@ -117,7 +119,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this.TargetInDistance && this.willMove)
+        if (this.TargetInDistance && this.willMove && !this.isInvulnerable)
         {
             PathFollow();
         }
