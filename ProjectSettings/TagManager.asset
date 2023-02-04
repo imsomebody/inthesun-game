@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerVFX
   - Node
+  - PlayerDust
+  - VirtualCamera
   layers:
   - Default
   - TransparentFX

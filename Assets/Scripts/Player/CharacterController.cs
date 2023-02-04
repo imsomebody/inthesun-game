@@ -3,6 +3,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class CharacterController : MonoBehaviour
 {
     private CinemachineVirtualCamera virtualCamera;
     private float shakeTimer;
+    private bool attackLock = false;
 
     [Header("Base Health Values")]
     public Int32 maxHealth = 100;
@@ -312,6 +314,34 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    void Attack()
+    {
+        var layer = LayerMask.NameToLayer("Ground");
+        var scale = this.rigidbody.position;
+
+        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, .8f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
+
+        if (intersect && !this.attackLock)
+        {
+            var enemyHandler = intersect.GetComponent<EnemyController>();
+
+            if (enemyHandler)
+            {
+                this.characterAnimator.SetTrigger("IsAttacking");
+                enemyHandler.TakeDamage(40, 1, isFacingRight);
+                ShakeCamera(2.5f, .3f);
+                this.attackLock = true;
+                StartCoroutine(ClearAttackLock());
+            }
+        }
+    }
+
+    IEnumerator ClearAttackLock()
+    {
+        yield return new WaitForSeconds(.65f);
+        this.attackLock = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -338,6 +368,14 @@ public class CharacterController : MonoBehaviour
             StartJumping();
             this.JumpContinuous();
             this.lastMovement = DateTime.Now;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (!this.attackLock)
+            {
+                this.Attack();
+            }
         }
 
         if (this.rigidbody.velocity.y < -1f)
@@ -379,8 +417,22 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
+        if (this.rigidbody.velocity.y > 0)
+        {
+            this.StartJumping();
+        }
+        else if (this.rigidbody.velocity.y < 0)
+        {
+            this.StartFalling();
+        }
+        else
+        {
+            this.StopFalling();
+            this.StopJumping();
+        }
 
-        if (speed != 0.0)
+
+        if (speed != 0.0 && this.RaycastHitGround)
         {
             this.lastMovement = DateTime.Now;
 
@@ -393,6 +445,7 @@ public class CharacterController : MonoBehaviour
             {
                 this.StartWalking();
             }
+
         }
         else
         {

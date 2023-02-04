@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 377022947}
   m_Layer: 0
   m_Name: VirtualCamera
-  m_TagString: Untagged
+  m_TagString: VirtualCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 1047297163}
   - component: {fileID: 1047297165}
   - component: {fileID: 1047297164}
+  - component: {fileID: 1047297166}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -977,6 +978,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1047297166
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047297162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1228625268
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,10 +7433,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7779010765529210017, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7779010765529210025, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7464,29 +7478,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: speed
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1324239472}
-    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: willFlip
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: willJump
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: willMove
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
-      propertyPath: jumpModifier
-      value: 2.06
-      objectReference: {fileID: 0}
     - target: {fileID: 7779010765529210036, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
       propertyPath: m_Name
       value: Enemy

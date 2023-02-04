@@ -54,14 +54,15 @@ MonoBehaviour:
   target: {fileID: 0}
   activateDistance: 50
   pathUpdateInterval: 0.5
-  speed: 180
+  speed: 110
   nextWaypointDistance: 3
   jumpNodeHeightMinimum: 0.91
-  jumpModifier: 0.89
+  jumpModifier: 2.06
   jumpCheckOffset: 0.008
-  willMove: 0
-  willJump: 0
-  willFlip: 0
+  willMove: 1
+  willJump: 1
+  willFlip: 1
+  damageToPlayer: 30
   playerLayer:
     serializedVersion: 2
     m_Bits: 3

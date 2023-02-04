@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
         get
         {
             var layer = LayerMask.NameToLayer("Player");
-            var intersect = Physics2D.OverlapCircleAll(this.rb.position, .8f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Character"));
+            var intersect = Physics2D.OverlapCircleAll(this.rb.position, .5f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Character"));
 
             return intersect != null;
         }
@@ -78,15 +78,15 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         Console.WriteLine($"Enemy of name {this.name} has died and was removed from the game area");
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 
-    public void TakeDamage(int damage, int mul = 1)
+    public void TakeDamage(int damage, int mul = 1, bool positive = true)
     {
         if (isInvulnerable) return;
         this.isInvulnerable = true;
 
-        var damageCalc = damage * mul;
+        var damageCalc = damage;
 
         this.health -= damageCalc;
 
@@ -112,6 +112,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateInterval);
+        this.ResetHealth();
     }
 
     private void FixedUpdate()
