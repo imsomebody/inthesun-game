@@ -99,9 +99,16 @@ public class CharacterController : MonoBehaviour
         SyncHealthWithUi();
     }
 
-    public void TakeDamage(int damage, float mul = 1)
+    public void TakeDamage(int damage, EnemyController enemy, float mul = 1)
     {
         if (isInvulnerable) return;
+        if (rollLock)
+        {
+            enemy.TakeDamage(30, 1, this.isFacingRight);
+            this.ShakeCamera(3f, .4f);
+            return;
+        }
+
         isInvulnerable = true;
         var damageCalculation = (int)Math.Round(damage * mul);
 

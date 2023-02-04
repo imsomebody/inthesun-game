@@ -149,7 +149,7 @@ public class EnemyController : MonoBehaviour
     {
         if (CanDamagePlayer)
         {
-            player.TakeDamage(this.damageToPlayer);
+            player.TakeDamage(this.damageToPlayer, this);
         }
     }
 
