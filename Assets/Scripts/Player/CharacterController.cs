@@ -277,20 +277,21 @@ public class CharacterController : MonoBehaviour
         while (true)
         {
             var isAfk = this.characterAnimator.GetBool("IsAFK");
+            TimeSpan? difference = null;
 
             if (lastMovement != null)
             {
-                var difference = DateTime.Now - lastMovement;
+                difference = DateTime.Now - lastMovement;
 
-                if (difference.Seconds < 5)
+                if (difference?.Seconds < 4)
                 {
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(2f);
                 }
             }
 
-            if (currentSpeed == 0f && this.rigidbody.velocity.y == 0f && !isAfk)
+            if (currentSpeed == 0f && this.rigidbody.velocity.y == 0f && !isAfk && difference?.Seconds >= 4)
             {
-                isAfk = !isAfk;
+                isAfk = true;
 
                 if (this.characterAnimator.GetBool("IsWalking"))
                 {
