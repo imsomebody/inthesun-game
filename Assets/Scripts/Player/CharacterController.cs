@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private float shakeTimer;
     private bool attackLock = false;
+    private bool isAlive = true;
 
     [Header("Base Health Values")]
     public Int32 maxHealth = 100;
@@ -122,8 +123,8 @@ public class CharacterController : MonoBehaviour
             this.remainder = Math.Abs(this.health);
             this.health = 0;
 
-
             Die();
+            return;
         }
 
         characterAnimator.SetTrigger("DamageTrigger");
@@ -166,11 +167,15 @@ public class CharacterController : MonoBehaviour
 
     private void Die()
     {
-        // todo: requisitar anima��o ao animator aqui
-        // todo: ui ao morrer
+        this.isAlive = false;
+        this.ShakeCamera(0f, 0f);
+        this.StopAfk();
+        this.StopFalling();
+        this.StopJumping();
+        this.runAudio.Stop();
+        this.rigidbody.velocity = new Vector2(0f, 0f);
 
-        this.respawnHandler.Respawn();
-        this.ResetHealth();
+        SyncHealthWithAnimator();
     }
 
     public void BeAfk()
@@ -369,6 +374,8 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!this.isAlive) return;
+
         this.horizontalInput = Input.GetAxisRaw("Horizontal");
 
         shakeTimer -= Time.deltaTime;
@@ -427,6 +434,8 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!this.isAlive) return;
+
         var speed = this.horizontalInput * this.speedModifier;
 
         // no input while dashing

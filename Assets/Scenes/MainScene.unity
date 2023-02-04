@@ -7670,6 +7670,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1324239472}
+    - target: {fileID: 7779010765529210028, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
+      propertyPath: willMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7779010765529210036, guid: 61984b824ff6c1045868c02f5545c001, type: 3}
       propertyPath: m_Name
       value: Enemy
