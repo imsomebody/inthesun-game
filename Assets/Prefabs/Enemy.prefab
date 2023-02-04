@@ -69,6 +69,7 @@ MonoBehaviour:
     m_Bits: 3
   currentWaypoint: 2
   seeker: {fileID: 7779010765529210018}
+  rb: {fileID: 0}
 --- !u!50 &7779010765529210019
 Rigidbody2D:
   serializedVersion: 4
