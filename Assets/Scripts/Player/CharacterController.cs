@@ -93,12 +93,12 @@ public class CharacterController : MonoBehaviour
             Die();
         }
 
-        // todo: request animation frames
+        characterAnimator.SetTrigger("DamageTrigger");
     }
 
     private void Die()
     {
-        // todo: requisitar animação ao animator aqui
+        // todo: requisitar animaï¿½ï¿½o ao animator aqui
         // todo: ui ao morrer
 
         this.respawnHandler.Respawn();
@@ -279,7 +279,7 @@ public class CharacterController : MonoBehaviour
             this.lastMovement = DateTime.Now;
         }
 
-        if (this.rigidbody.velocity.y < 0)
+        if (this.rigidbody.velocity.y < -1f)
         {
             this.StartFalling();
         }
@@ -289,7 +289,7 @@ public class CharacterController : MonoBehaviour
 
     void StartWalking()
     {
-        if (this.characterAnimator.GetBool("IsWalking"))
+        if (!this.characterAnimator.GetBool("IsWalking"))
         {
             this.characterAnimator.SetBool("IsWalking", true);
         }
@@ -326,7 +326,7 @@ public class CharacterController : MonoBehaviour
             this.runAudio.Stop();
         }
 
-        if (this.RaycastHitGround && speed > 0)
+        if (this.RaycastHitGround && speed != 0)
         {
             this.StopJumping();
             this.StopFalling();
@@ -338,7 +338,7 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            // TODO: animação freefall
+            // TODO: animaï¿½ï¿½o freefall
             this.runAudio.Stop();
         }
 
