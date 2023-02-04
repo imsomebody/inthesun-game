@@ -185,6 +185,7 @@ public class CharacterController : MonoBehaviour
         this.runAudio = GetComponent<AudioSource>();
         this.virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
 
+        this.characterAnimator.ResetTrigger("IsAttacking");
         this.ResetHealth();
         this.ResetStamina();
 
@@ -316,21 +317,23 @@ public class CharacterController : MonoBehaviour
 
     void Attack()
     {
+        if (this.attackLock) return;
+
+        this.characterAnimator.SetTrigger("IsAttacking");
         var layer = LayerMask.NameToLayer("Ground");
         var scale = this.rigidbody.position;
 
-        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, .8f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
+        var intersect = Physics2D.OverlapCircleAll(this.rigidbody.position, 1.2f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Enemy"));
 
-        if (intersect && !this.attackLock)
+        if (intersect)
         {
             var enemyHandler = intersect.GetComponent<EnemyController>();
 
             if (enemyHandler)
             {
-                this.characterAnimator.SetTrigger("IsAttacking");
+                this.attackLock = true;
                 enemyHandler.TakeDamage(40, 1, isFacingRight);
                 ShakeCamera(2.5f, .3f);
-                this.attackLock = true;
                 StartCoroutine(ClearAttackLock());
             }
         }
@@ -370,7 +373,7 @@ public class CharacterController : MonoBehaviour
             this.lastMovement = DateTime.Now;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (!this.attackLock)
             {
