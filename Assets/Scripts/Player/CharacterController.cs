@@ -17,6 +17,8 @@ public class CharacterController : MonoBehaviour
     public float horizontalInput;
     public float speedModifier = 8f;
     public float jumpModifier = 16f;
+    public float rollModifider = .1f;
+    public bool rollLock = false;
     public Int32 maxStamina = 100;
     public Int32 minStamina = 0;
     public Int32 stamina;
@@ -62,7 +64,7 @@ public class CharacterController : MonoBehaviour
     {
         get
         {
-            return this.stamina > (this.minStamina * 0.10);
+            return this.stamina > 40;
         }
     }
 
@@ -94,6 +96,52 @@ public class CharacterController : MonoBehaviour
         }
 
         characterAnimator.SetTrigger("DamageTrigger");
+    }
+
+    void Roll()
+    {
+        if (!this.rollLock && this.RaycastHitGround)
+        {
+            this.rollLock = true;
+            this.characterAnimator.SetTrigger("IsRolling");
+
+            if (this.rigidbody.velocity.x > 0)
+            {
+                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + this.rollModifider, rigidbody.velocity.y);
+            }
+            else if (this.rigidbody.velocity.x < 0)
+            {
+                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + (-this.rollModifider), rigidbody.velocity.y);
+            }
+
+            this.DepleteStamina(40);
+
+            StartCoroutine(ClearRollBlocker());
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (this.rollLock)
+        {
+            if (collision.transform.gameObject.name.Contains("Enemy") || collision.transform.parent.gameObject.name.Contains("Enemy"))
+            {
+                Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), collision.collider, true);
+            }
+        }
+        else
+        {
+            if (collision.transform.gameObject.name.Contains("Enemy") || collision.transform.parent.gameObject.name.Contains("Enemy"))
+            {
+                Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), collision.collider, false);
+            }
+        }
+    }
+
+    IEnumerator ClearRollBlocker()
+    {
+        yield return new WaitForSeconds(.7f);
+        this.rollLock = false;
     }
 
     private void Die()
@@ -285,6 +333,13 @@ public class CharacterController : MonoBehaviour
         }
 
         Flip();
+
+        // absolute cat, mf wont leave falling state while speed = 0 and i got no sanity left marhaba
+        if (this.rigidbody.velocity.x == 0 && this.RaycastHitGround && this.rigidbody.velocity.y == 0)
+        {
+            this.StopFalling();
+            this.characterAnimator.SetBool("IsWalking", false);
+        }
     }
 
     void StartWalking()
@@ -301,8 +356,8 @@ public class CharacterController : MonoBehaviour
 
         if (this.isSprinting && this.HasStaminaToSprint)
         {
-            speed *= 1f;
-            this.DepleteStamina(1);
+            Roll();
+            return;
         }
 
 
