@@ -39,6 +39,7 @@ public class CharacterController : MonoBehaviour
     public AudioSource healAudio;
     public AudioSource swordAudio;
     public AudioSource impactAudio;
+    public AudioSource damageAudio;
 
     [Header("Movement Dependencies]")]
     [SerializeField]
@@ -128,6 +129,11 @@ public class CharacterController : MonoBehaviour
         this.health = this.health - damageCalculation;
         this.SyncHealthWithUi();
         this.ShakeCamera();
+
+        if (!this.damageAudio.isPlaying)
+        {
+            this.damageAudio.Play();
+        }
 
         if (health <= 0)
         {
