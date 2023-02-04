@@ -7544,6 +7544,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7196152795592248257, guid: 2ccf06d8d03a36740a6e433dd6d6f742, type: 3}
+      propertyPath: attackRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196152795592248257, guid: 2ccf06d8d03a36740a6e433dd6d6f742, type: 3}
       propertyPath: healthBarUi
       value: 
       objectReference: {fileID: 1817483721}

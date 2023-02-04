@@ -1,0 +1,827 @@
+fileFormatVersion: 2
+guid: 0221703f7f06d064d9f068f2933fb5e3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd45d42ea920d9c4e8182974e5c5a006
+      internalID: 990377134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad2d91641006694a829337522806a8f
+      internalID: -97458426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3511802a91526b144b1992a284af8ad1
+      internalID: -263863886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6f2f2d9d795f204ea6dd14c4ca0be9e
+      internalID: 2063734278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4536f927497d44da52496872dada37
+      internalID: 1529719782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff890bb7ac4758489bff53fb2cf52e7
+      internalID: 498809227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4f3ee1e6fdf904fb8e5c8d575a6d3e
+      internalID: -324629960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9da619ae60390f43baf712bafa22893
+      internalID: 1665944856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b645f1ee7a49d5a46878f5c2a294ee14
+      internalID: -1105460356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ba298d4be44fb469446fe9f0fc9201
+      internalID: -1149099865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e9a522ea2dcc5419139aa43c040dd8
+      internalID: -2012441470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686a6425e53af0a47a97700956944ff2
+      internalID: 1363288686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5c65125d205264397f13e2659fa753
+      internalID: 753822046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36fa61e6aa81f54baca4bf6bae33ecf
+      internalID: -995351800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5b518c1f092114888d2b75c1dd315c
+      internalID: 775135217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c885aed50b3e5a42a9f2b31a67a91fd
+      internalID: 777557847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428cac1347963724ba6f0b0eb97548f6
+      internalID: 773799956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322c182d3ab201a45b93b7533adc51b0
+      internalID: 184841614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bba0544c51869446b063136c0538cb1
+      internalID: 1111846825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5628e44f1cf968845a4cba774d5d8b87
+      internalID: 803512789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d383531cce7f904793cab5af32a62ca
+      internalID: -1669288128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0aa85ce22bdc174b967558dc152329d
+      internalID: -1362528029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2267b8e4b8ff52d4898163a55f7da899
+      internalID: 1100025684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f6096e551e7e084bbdd2e63f704b862
+      internalID: 1442088597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d95e4276cfb714a80ae3751eb53517
+      internalID: 1082675027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d9614929a6c3b4a87e3a14edfe5347
+      internalID: 1020097535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028780f63da05ca44bfcab0f893809e2
+      internalID: 1104887199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445c1922bea7023459fb15a2f61334fb
+      internalID: 561913633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef899a7a5dedca849a68d3536ee524ef
+      internalID: 1763402816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a4628daf96e5c45931f87f4a6e76c8
+      internalID: -731840086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55548c6b1ae19fe4690501fd3b530084
+      internalID: 1159080029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NotHealingBee_SpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 0
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac02de0e49853d4da2d10c747897152
+      internalID: 945033240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      NotHealingBee_SpriteSheet_31: 945033240
+      NotHealingBee_SpriteSheet_20: -1669288128
+      NotHealingBee_SpriteSheet_22: 1100025684
+      NotHealingBee_SpriteSheet_17: 184841614
+      NotHealingBee_SpriteSheet_11: 1363288686
+      NotHealingBee_SpriteSheet_5: 498809227
+      NotHealingBee_SpriteSheet_14: 775135217
+      NotHealingBee_SpriteSheet_7: 1665944856
+      NotHealingBee_SpriteSheet_27: 561913633
+      NotHealingBee_SpriteSheet_6: -324629960
+      NotHealingBee_SpriteSheet_2: -263863886
+      NotHealingBee_SpriteSheet_12: 753822046
+      NotHealingBee_SpriteSheet_24: 1082675027
+      NotHealingBee_SpriteSheet_18: 1111846825
+      NotHealingBee_SpriteSheet_10: -2012441470
+      NotHealingBee_SpriteSheet_8: -1105460356
+      NotHealingBee_SpriteSheet_25: 1020097535
+      NotHealingBee_SpriteSheet_4: 1529719782
+      NotHealingBee_SpriteSheet_9: -1149099865
+      NotHealingBee_SpriteSheet_23: 1442088597
+      NotHealingBee_SpriteSheet_15: 777557847
+      NotHealingBee_SpriteSheet_30: 1159080029
+      NotHealingBee_SpriteSheet_0: 990377134
+      NotHealingBee_SpriteSheet_3: 2063734278
+      NotHealingBee_SpriteSheet_28: 1763402816
+      NotHealingBee_SpriteSheet_13: -995351800
+      NotHealingBee_SpriteSheet_16: 773799956
+      NotHealingBee_SpriteSheet_1: -97458426
+      NotHealingBee_SpriteSheet_21: -1362528029
+      NotHealingBee_SpriteSheet_29: -731840086
+      NotHealingBee_SpriteSheet_26: 1104887199
+      NotHealingBee_SpriteSheet_19: 803512789
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
