@@ -25,6 +25,7 @@ public class CharacterController : MonoBehaviour
     public bool shouldRegenerateStamina = true;
     public float secondsBeforeStaminaRegen = 0.7f;
     private bool isFacingRight = true;
+    private bool isInvulnerable = false;
     public AudioSource runAudio;
 
     [Header("Movement Dependencies]")]
@@ -80,6 +81,8 @@ public class CharacterController : MonoBehaviour
 
     public void TakeDamage(int damage, float mul = 1)
     {
+        if (isInvulnerable) return;
+        isInvulnerable = true;
         var damageCalculation = (int)Math.Round(damage * mul);
 
         this.health = this.health - damageCalculation;
@@ -96,6 +99,13 @@ public class CharacterController : MonoBehaviour
         }
 
         characterAnimator.SetTrigger("DamageTrigger");
+        StartCoroutine(InvulnerableInterval());
+    }
+
+    IEnumerator InvulnerableInterval()
+    {
+        yield return new WaitForSeconds(.5f);
+        this.isInvulnerable = false;
     }
 
     void Roll()

@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -13,6 +15,7 @@ public class EnemyController : MonoBehaviour
     public int minHealth = 0;
     public int maxHealth = 100;
     public int health;
+    private bool isInvulnerable = false;
 
     [Header("Pathfinding")]
     public Transform target;
@@ -30,6 +33,7 @@ public class EnemyController : MonoBehaviour
     public bool willMove = true;
     public bool willJump = true;
     public bool willFlip = true;
+    public int damageToPlayer = 30;
 
     [SerializeField]
     private LayerMask playerLayer;
@@ -79,6 +83,9 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage, int mul = 1)
     {
+        if (isInvulnerable) return;
+        this.isInvulnerable = true;
+
         var damageCalc = damage * mul;
 
         this.health -= damageCalc;
@@ -86,7 +93,16 @@ public class EnemyController : MonoBehaviour
         if(this.health < this.minHealth)
         {
             this.Die();
+            return;
         }
+
+        StartCoroutine(InvulnerableInterval());
+    }
+
+    IEnumerator InvulnerableInterval()
+    {
+        yield return new WaitForSeconds(.5f);
+        this.isInvulnerable = false;
     }
 
     void Start()
@@ -132,7 +148,7 @@ public class EnemyController : MonoBehaviour
     {
         if (CanDamagePlayer)
         {
-            player.TakeDamage(2);
+            player.TakeDamage(this.damageToPlayer);
         }
     }
 
