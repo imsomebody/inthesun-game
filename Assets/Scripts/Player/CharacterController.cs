@@ -250,7 +250,7 @@ public class CharacterController : MonoBehaviour
 
     void SyncHealthWithAnimator()
     {
-        this.characterAnimator.SetInteger("HealthPoints", this.health);
+        this.characterAnimator.SetFloat("HealthPoints",  this.health);
     }
 
     public void ResetStamina()
