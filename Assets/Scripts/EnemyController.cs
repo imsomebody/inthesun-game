@@ -3,6 +3,7 @@ using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -53,8 +54,10 @@ public class EnemyController : MonoBehaviour
     {
         get
         {
-            var intersect = Physics2D.OverlapCircle(this.transform.position, 1.5f, LayerMask.NameToLayer("Player"));
-            return intersect;
+            var layer = LayerMask.NameToLayer("Player");
+            var intersect = Physics2D.OverlapCircleAll(this.rb.position, .8f).AsQueryable().FirstOrDefault(collider => collider.name.Contains("Character"));
+
+            return intersect != null;
         }
     }
 
@@ -101,11 +104,11 @@ public class EnemyController : MonoBehaviour
         {
             PathFollow();
         }
+    }
 
-        if(CanDamagePlayer)
-        {
-            player.TakeDamage(2);
-        }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(this.transform.position, .8f);
     }
 
     void UpdatePath()
@@ -122,6 +125,14 @@ public class EnemyController : MonoBehaviour
         {
             path = p;
             currentWaypoint = 0;
+        }
+    }
+
+    private void Update()
+    {
+        if (CanDamagePlayer)
+        {
+            player.TakeDamage(2);
         }
     }
 
