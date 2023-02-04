@@ -17,7 +17,7 @@ public class CharacterController : MonoBehaviour
     public float horizontalInput;
     public float speedModifier = 8f;
     public float jumpModifier = 16f;
-    public float rollModifider = .1f;
+    public float rollModifider = .1f / 5;
     public bool rollLock = false;
     public Int32 maxStamina = 100;
     public Int32 minStamina = 0;
@@ -64,7 +64,7 @@ public class CharacterController : MonoBehaviour
     {
         get
         {
-            return this.stamina > 40;
+            return this.stamina > (this.minStamina + 45f);
         }
     }
 
@@ -107,34 +107,16 @@ public class CharacterController : MonoBehaviour
 
             if (this.rigidbody.velocity.x > 0)
             {
-                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + this.rollModifider, rigidbody.velocity.y);
+                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + this.rollModifider / 3f, rigidbody.velocity.y);
             }
             else if (this.rigidbody.velocity.x < 0)
             {
-                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + (-this.rollModifider), rigidbody.velocity.y);
+                this.rigidbody.velocity = new Vector2(this.rigidbody.velocity.x + (-this.rollModifider / 3f), rigidbody.velocity.y);
             }
 
             this.DepleteStamina(40);
 
             StartCoroutine(ClearRollBlocker());
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (this.rollLock)
-        {
-            if (collision.transform.gameObject.name.Contains("Enemy") || collision.transform.parent.gameObject.name.Contains("Enemy"))
-            {
-                Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), collision.collider, true);
-            }
-        }
-        else
-        {
-            if (collision.transform.gameObject.name.Contains("Enemy") || collision.transform.parent.gameObject.name.Contains("Enemy"))
-            {
-                Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), collision.collider, false);
-            }
         }
     }
 
@@ -353,6 +335,12 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         var speed = this.horizontalInput * this.speedModifier;
+
+        // no input while dashing
+        if(rollLock)
+        {
+            return;
+        }
 
         if (this.isSprinting && this.HasStaminaToSprint)
         {
