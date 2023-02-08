@@ -5,12 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-using UnityEditor.SearchService;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class CharacterController : MonoBehaviour
 {
@@ -67,8 +63,6 @@ public class CharacterController : MonoBehaviour
     private RespawnHandler respawnHandler;
 
     private DateTime lastMovement;
-
-
 
     void OnDrawGizmos()
     {
